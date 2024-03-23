@@ -2,7 +2,7 @@ package br.com.screenmatch.models;
 
 import br.com.screenmatch.calculation.Classifiable;
 
-public class Film extends Tittle implements Classifiable{
+public class Film extends Title implements Classifiable{
     private String director;
 
     public Film(String name, int releaseYear) {

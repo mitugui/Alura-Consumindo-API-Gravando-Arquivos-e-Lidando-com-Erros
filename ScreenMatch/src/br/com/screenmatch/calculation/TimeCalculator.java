@@ -2,7 +2,7 @@ package br.com.screenmatch.calculation;
 
 // import br.com.screenmatch.models.Film;
 // import br.com.screenmatch.models.Serie;
-import br.com.screenmatch.models.Tittle;
+import br.com.screenmatch.models.Title;
 
 public class TimeCalculator {
     private int totalTime;
@@ -19,7 +19,7 @@ public class TimeCalculator {
     //     totalTime += serie.getDurationInMinutes();
     // }
 
-    public void include (Tittle titulo) {
-        this.totalTime += titulo.getDurationInMinutes();
+    public void include (Title title) {
+        this.totalTime += title.getDurationInMinutes();
     }
 }

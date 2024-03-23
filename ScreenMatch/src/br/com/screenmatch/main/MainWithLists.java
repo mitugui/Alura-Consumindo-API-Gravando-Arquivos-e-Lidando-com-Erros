@@ -7,7 +7,7 @@ import java.util.List;
 
 import br.com.screenmatch.models.Film;
 import br.com.screenmatch.models.Serie;
-import br.com.screenmatch.models.Tittle;
+import br.com.screenmatch.models.Title;
 
 public class MainWithLists {
     public static void main(String[] args) {
@@ -16,7 +16,7 @@ public class MainWithLists {
         Film mituguiMovie = new Film("Past Lives", 2023);
         Serie favoriteSerie = new Serie("The Office", 2005);
         
-        ArrayList<Tittle> watchedList = new ArrayList<>();
+        ArrayList<Title> watchedList = new ArrayList<>();
         watchedList.add(favoriteMovie);
         favoriteMovie.setRating(9);
         watchedList.add(otherMovie);
@@ -25,7 +25,7 @@ public class MainWithLists {
         mituguiMovie.setRating(8);
         watchedList.add(favoriteSerie);
 
-        for (Tittle item:watchedList) {
+        for (Title item:watchedList) {
             System.out.print(item.getName());
             if (item instanceof Film film) {
                 System.out.println(" - " + film.getClassification());     
@@ -54,7 +54,7 @@ public class MainWithLists {
         Collections.sort(watchedList);
         System.out.println("\nLista de títulos por ordem alfabética:");
         System.out.println(watchedList);
-        watchedList.sort(Comparator.comparing(Tittle::getReleaseYear));
+        watchedList.sort(Comparator.comparing(Title::getReleaseYear));
         System.out.println("\nLista de títulos por ordem de lançamento:");
         System.out.println(watchedList);
     }
