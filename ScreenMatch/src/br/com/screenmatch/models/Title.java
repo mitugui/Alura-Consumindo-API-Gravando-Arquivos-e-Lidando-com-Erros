@@ -1,14 +1,9 @@
 package br.com.screenmatch.models;
 
-import com.google.gson.annotations.SerializedName;
-
 public class Title implements Comparable<Title>{
-    @SerializedName("Title")
     private String name;
-    @SerializedName("Year")
     private int releaseYear;
     private boolean includedInPlan;
-    @SerializedName("Runtime")
     private int durationInMinutes;
     private double ratingSum;
     private int totalRatings;
@@ -16,6 +11,12 @@ public class Title implements Comparable<Title>{
     public Title(String name, int releaseYear) {
         this.name = name;
         this.releaseYear = releaseYear;
+    }
+
+    public Title(TitleOmdb titleOmdb) {
+        this.name = titleOmdb.title();
+        this.releaseYear = Integer.valueOf(titleOmdb.year()); // Aqui pode dar erro, podemos acabar recebendo uma String com um caracter a mais, ex. "2018?"
+        this.durationInMinutes = Integer.valueOf(titleOmdb.runtime().replaceAll("\\D", ""));
     }
 
     public void displayTechnicalSheet () {
@@ -75,6 +76,6 @@ public class Title implements Comparable<Title>{
 
     @Override
     public String toString() {
-        return name + " (" + releaseYear + ")";
+        return name + " (" + releaseYear + ")" + ", Duração: " + durationInMinutes + " min";
     }
 }

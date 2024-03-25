@@ -8,9 +8,12 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.Scanner;
 
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import br.com.screenmatch.models.Title;
+import br.com.screenmatch.models.TitleOmdb;
 
 public class MainWithSearch {
     public static void main(String[] args) throws IOException, InterruptedException {
@@ -31,9 +34,11 @@ public class MainWithSearch {
         String json = response.body();
         System.out.println(json);
         
-        Gson gson = new Gson();
-        Title myTitle = gson.fromJson(json, Title.class);
-
+        Gson gson = new GsonBuilder()
+                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+                .create();
+        TitleOmdb myTitleOmdb = gson.fromJson(json, TitleOmdb.class);
+        Title myTitle = new Title(myTitleOmdb);
         System.out.println(myTitle);
     }
 }
