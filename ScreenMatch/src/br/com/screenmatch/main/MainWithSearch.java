@@ -38,7 +38,13 @@ public class MainWithSearch {
                 .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
                 .create();
         TitleOmdb myTitleOmdb = gson.fromJson(json, TitleOmdb.class);
-        Title myTitle = new Title(myTitleOmdb);
-        System.out.println(myTitle);
+
+        try {
+                Title myTitle = new Title(myTitleOmdb);
+                System.out.println("Titulo convertido: " + myTitle);          
+        } catch (NumberFormatException e) {
+                System.out.println("Aconteceu um erro: " + e.getMessage());
+        }
+        System.out.println("O programa finalizou corretamente!");
     }
 }
