@@ -16,35 +16,38 @@ import br.com.screenmatch.models.Title;
 import br.com.screenmatch.models.TitleOmdb;
 
 public class MainWithSearch {
-    public static void main(String[] args) throws IOException, InterruptedException {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Digite um filme para buscar:");
-        var search = sc.nextLine();
-        sc.close();
+        public static void main(String[] args) throws IOException, InterruptedException {
+                Scanner sc = new Scanner(System.in);
+                System.out.println("Digite um filme para buscar:");
+                var search = sc.nextLine();
+                sc.close();
 
-        String address = "http://www.omdbapi.com/?t=" + search + "&apikey=47804e78";
+                String address = "http://www.omdbapi.com/?t=" + search + "&apikey=47804e78";
 
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(address))
-                .build();
-        HttpResponse<String> response = client
-                .send(request, BodyHandlers.ofString());
+                try {
+                        HttpClient client = HttpClient.newHttpClient();
+                        HttpRequest request = HttpRequest.newBuilder()
+                                        .uri(URI.create(address))
+                                        .build();
+                        HttpResponse<String> response = client
+                                        .send(request, BodyHandlers.ofString());
 
-        String json = response.body();
-        System.out.println(json);
-        
-        Gson gson = new GsonBuilder()
-                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
-                .create();
-        TitleOmdb myTitleOmdb = gson.fromJson(json, TitleOmdb.class);
+                        String json = response.body();
+                        System.out.println(json);
 
-        try {
-                Title myTitle = new Title(myTitleOmdb);
-                System.out.println("Titulo convertido: " + myTitle);          
-        } catch (NumberFormatException e) {
-                System.out.println("Aconteceu um erro: " + e.getMessage());
+                        Gson gson = new GsonBuilder()
+                                        .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+                                        .create();
+                        TitleOmdb myTitleOmdb = gson.fromJson(json, TitleOmdb.class);
+
+                        // try {
+                        Title myTitle = new Title(myTitleOmdb);
+                        System.out.println("Titulo convertido: " + myTitle);
+                } catch (NumberFormatException e) {
+                        System.out.println("Aconteceu um erro: " + e.getMessage());
+                } catch (IllegalArgumentException e) {
+                        System.out.println("Algum erro de argumento na busca: ");
+                }
+                System.out.println("O programa finalizou corretamente!");
         }
-        System.out.println("O programa finalizou corretamente!");
-    }
 }
