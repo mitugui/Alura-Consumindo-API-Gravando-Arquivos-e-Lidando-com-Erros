@@ -2,6 +2,7 @@ package br.com.screenmatch.main;
 
 import java.io.IOException;
 import java.net.URI;
+import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -22,7 +23,7 @@ public class MainWithSearch {
                 var search = sc.nextLine();
                 sc.close();
 
-                String address = "http://www.omdbapi.com/?t=" + search + "&apikey=47804e78";
+                String address = "http://www.omdbapi.com/?t=" + URLEncoder.encode(search, "UTF-8") + "&apikey=47804e78";
 
                 try {
                         HttpClient client = HttpClient.newHttpClient();
