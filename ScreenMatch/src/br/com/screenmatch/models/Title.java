@@ -1,5 +1,7 @@
 package br.com.screenmatch.models;
 
+import br.com.screenmatch.exceptions.YearConversionException;
+
 public class Title implements Comparable<Title>{
     private String name;
     private int releaseYear;
@@ -15,6 +17,10 @@ public class Title implements Comparable<Title>{
 
     public Title(TitleOmdb titleOmdb) {
         this.name = titleOmdb.title();
+
+        if (titleOmdb.year().length() > 4) {
+            throw new YearConversionException("Não foi possível converter o ano por possuir mais de 4 caracteres");
+        }
         this.releaseYear = Integer.valueOf(titleOmdb.year()); // Aqui pode dar erro, podemos acabar recebendo uma String com um caracter a mais, ex. "2018?"
         this.durationInMinutes = Integer.valueOf(titleOmdb.runtime().replaceAll("\\D", ""));
     }

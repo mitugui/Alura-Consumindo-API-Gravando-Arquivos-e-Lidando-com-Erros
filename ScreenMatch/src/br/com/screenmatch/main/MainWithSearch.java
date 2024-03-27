@@ -13,6 +13,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import br.com.screenmatch.exceptions.YearConversionException;
 import br.com.screenmatch.models.Title;
 import br.com.screenmatch.models.TitleOmdb;
 
@@ -48,6 +49,8 @@ public class MainWithSearch {
                         System.out.println("Aconteceu um erro: " + e.getMessage());
                 } catch (IllegalArgumentException e) {
                         System.out.println("Algum erro de argumento na busca: ");
+                } catch (YearConversionException e) {
+                        System.out.println(e.getMessage());
                 }
                 System.out.println("O programa finalizou corretamente!");
         }
