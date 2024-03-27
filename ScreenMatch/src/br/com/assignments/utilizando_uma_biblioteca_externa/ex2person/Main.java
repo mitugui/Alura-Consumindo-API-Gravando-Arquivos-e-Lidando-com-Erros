@@ -1,4 +1,4 @@
-package br.com.assignments.utilizandoumabibliotecaexterna.ex2person;
+package br.com.assignments.utilizando_uma_biblioteca_externa.ex2person;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

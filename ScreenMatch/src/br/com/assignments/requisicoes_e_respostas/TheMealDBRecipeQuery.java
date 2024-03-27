@@ -1,4 +1,4 @@
-package br.com.assignments.requisicoeserepostas;
+package br.com.assignments.requisicoes_e_respostas;
 
 import java.io.IOException;
 import java.net.URI;
@@ -8,26 +8,22 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.Scanner;
 
-public class GoogleBooksBookQuery {
+public class TheMealDBRecipeQuery {
     public static void main(String[] args) throws IOException, InterruptedException {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Digite o nome de um livro:");
-        var bookTittle = sc.nextLine();
+        System.out.println("Digite a sua receita:");
+        var recipeName = sc.nextLine();
         sc.close();
 
-        var key = "APIKEY";
-        var address = "https://www.googleapis.com/books/v1/volumes?q=" + bookTittle + "&key=" + key;
+        var address = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + recipeName;
 
         HttpClient client = HttpClient.newHttpClient();
-
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(address))
                 .build();
-
         HttpResponse<String> response = client
                 .send(request, BodyHandlers.ofString());
 
         System.out.println(response.body());
-
     }
 }
