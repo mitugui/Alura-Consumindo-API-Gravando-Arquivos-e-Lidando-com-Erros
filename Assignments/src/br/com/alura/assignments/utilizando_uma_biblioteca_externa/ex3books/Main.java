@@ -1,4 +1,4 @@
-package br.com.assignments.utilizando_uma_biblioteca_externa.ex3books;
+package br.com.alura.assignments.utilizando_uma_biblioteca_externa.ex3books;
 
 import com.google.gson.Gson;
 

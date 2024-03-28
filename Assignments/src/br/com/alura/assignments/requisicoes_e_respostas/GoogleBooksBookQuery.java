@@ -1,4 +1,4 @@
-package br.com.assignments.requisicoes_e_respostas;
+package br.com.alura.assignments.requisicoes_e_respostas;
 
 import java.io.IOException;
 import java.net.URI;
