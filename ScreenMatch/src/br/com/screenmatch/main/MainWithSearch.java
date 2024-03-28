@@ -1,5 +1,6 @@
 package br.com.screenmatch.main;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URLEncoder;
@@ -42,9 +43,12 @@ public class MainWithSearch {
                                         .create();
                         TitleOmdb myTitleOmdb = gson.fromJson(json, TitleOmdb.class);
 
-                        // try {
                         Title myTitle = new Title(myTitleOmdb);
                         System.out.println("Titulo convertido: " + myTitle);
+
+                        FileWriter writer = new FileWriter("films.txt");
+                        writer.write(myTitle.toString());
+                        writer.close();
                 } catch (NumberFormatException e) {
                         System.out.println("Aconteceu um erro: " + e.getMessage());
                 } catch (IllegalArgumentException e) {
