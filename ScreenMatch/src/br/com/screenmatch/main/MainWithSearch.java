@@ -1,6 +1,5 @@
 package br.com.screenmatch.main;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URLEncoder;
@@ -18,7 +17,8 @@ import com.google.gson.GsonBuilder;
 
 import br.com.screenmatch.exceptions.YearConversionException;
 import br.com.screenmatch.models.Title;
-import br.com.screenmatch.models.TitleOmdb;
+import br.com.screenmatch.records.TitleOmdb;
+import br.com.screenmatch.utilities.FileGenerator;
 
 public class MainWithSearch {
         public static void main(String[] args) throws IOException, InterruptedException {
@@ -66,13 +66,16 @@ public class MainWithSearch {
                                 System.out.println("Algum erro de argumento na busca: ");
                         } catch (YearConversionException e) {
                                 System.out.println(e.getMessage());
+                        } catch (NullPointerException e) {
+                                System.out.println("Aconteceu um erro: " + e.getMessage());
+                        } catch (Exception e) {
+                                System.out.println(e.getClass());
                         }
                 }
                 sc.close();
 
-                FileWriter writer = new FileWriter("films.json");
-                writer.write(gson.toJson(titles));
-                writer.close();
+                FileGenerator myFileGenerator = new FileGenerator();
+                myFileGenerator.recordJson(titles);
 
                 System.out.println("O programa finalizou corretamente!");
         }

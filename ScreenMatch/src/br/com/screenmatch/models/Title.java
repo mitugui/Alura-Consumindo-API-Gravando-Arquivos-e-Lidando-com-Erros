@@ -1,6 +1,7 @@
 package br.com.screenmatch.models;
 
 import br.com.screenmatch.exceptions.YearConversionException;
+import br.com.screenmatch.records.TitleOmdb;
 
 public class Title implements Comparable<Title>{
     private String name;
