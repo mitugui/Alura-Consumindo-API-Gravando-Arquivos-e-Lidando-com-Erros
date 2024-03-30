@@ -21,9 +21,9 @@ public class QueryTitle {
                 .newHttpClient()
                 .send(request, BodyHandlers.ofString());
 
-        String json = response.body();
+        System.out.println(response.body());
 
-        TitleOmdb myTitleOmdb = gson.fromJson(json, TitleOmdb.class);
+        TitleOmdb myTitleOmdb = gson.fromJson(response.body(), TitleOmdb.class);
         Title myTitle = new Title(myTitleOmdb);
         System.out.println("Titulo convertido: " + myTitle);
 

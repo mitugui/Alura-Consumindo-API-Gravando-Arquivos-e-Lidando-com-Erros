@@ -22,8 +22,8 @@ public class Title implements Comparable<Title>{
         if (titleOmdb.year().length() > 4) {
             throw new YearConversionException("Não foi possível converter o ano por possuir mais de 4 caracteres");
         }
-        this.releaseYear = Integer.valueOf(titleOmdb.year()); // Aqui pode dar erro, podemos acabar recebendo uma String com um caracter a mais, ex. "2018?"
-        this.durationInMinutes = Integer.valueOf(titleOmdb.runtime().replaceAll("\\D", ""));
+        this.releaseYear = Integer.valueOf(titleOmdb.year().replaceAll("[^0-9]", ""));
+        this.durationInMinutes = Integer.valueOf(titleOmdb.runtime().replaceAll("[^0-9]", ""));
     }
 
     public void displayTechnicalSheet () {

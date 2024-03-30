@@ -10,7 +10,6 @@ import br.com.screenmatch.models.Title;
 
 public class FileGenerator {
     public void recordJson(List<Title> titles, Gson gson) throws IOException {
-
         FileWriter writer = new FileWriter("filmes.json");
         writer.write(gson.toJson(titles));
         writer.close();
